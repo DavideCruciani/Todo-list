@@ -104,4 +104,13 @@ footer {
   border-radius: 25px;
   background-color: var(--color2);
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#content-title {
+  color: white;
+  font-size: 140px;
+  font-family: 'Bebas Neue', cursive;
 }
