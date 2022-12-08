@@ -1,0 +1,1 @@
+(()=>{"use strict";function e(){const e=document.querySelector("nav");"none"!=e.style.display?e.style.display="none":e.style.display="inline"}document.getElementById("button").addEventListener("click",e),e(),console.log("DAJE")})();
