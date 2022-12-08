@@ -1,1 +1,3 @@
-console.log('DAJE')
+import { navToggle, navAnimation } from "../nav";
+
+navAnimation();
