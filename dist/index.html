@@ -14,6 +14,17 @@
   <title>Todo List</title>
 </head>
 <body>
+  <div class="modal">
+    <form>
+      <h3>Create New Task</h3>
+      <input type="text" id="tname" name="tname" placeholder="Name">
+      <textarea id="tdesc" name="tdesc" maxlength="150" placeholder="Description"></textarea>
+      <input type="text" id="tpty" name="tpty" placeholder="Priority">
+      <input type="text" id="ddate" name="ddate" placeholder="Due Date">
+      <button id="addButton">CREATE</button>
+    </form>
+  </div>
+  <div class="overlay"></div>
   <header>
     <button id="button">
       <span class="material-symbols-outlined" id="menu">
@@ -47,7 +58,7 @@
           Week Tasks
         </button>
 
-        <button class="nav-buttons">
+        <button class="nav-buttons" id="create-task-button">
           <span class="material-symbols-outlined">
             add_task
           </span>
