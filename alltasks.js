@@ -35,19 +35,25 @@ export function TaskCreator(task) {
   taskCnt.classList.add("task");
   const taskContainer = document.getElementById("content-holder")
   taskContainer.appendChild(taskCnt);
+  const taskCntDivider = document.createElement('div')
+  taskCnt.appendChild(taskCntDivider);
   const parag = document.createElement('p');
-  taskCnt.appendChild(parag);
+  taskCntDivider.appendChild(parag);
   parag.innerText = task.name;
 
+
+  const taskCntDivider2 = document.createElement('div')
+  taskCnt.appendChild(taskCntDivider2);
+  taskCntDivider2.classList.add("taskCntDivider2")
   var remove = document.createElement('button');
-  taskCnt.appendChild(remove);
+  taskCntDivider2.appendChild(remove);
   remove.innerText = "Remove";
   remove.classList.add("taskBtns")
   remove.setAttribute("id", "removeBtn")
   remove.addEventListener('click', removeTask);
 
   var modifyTask = document.createElement('button');
-  taskCnt.appendChild(modifyTask);
+  taskCntDivider2.appendChild(modifyTask);
   modifyTask.innerText = "Modify";
   modifyTask.classList.add("taskBtns")
   modifyTask.setAttribute("id", "modifyBtn")

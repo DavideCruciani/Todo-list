@@ -205,6 +205,7 @@ form {
 
 .task {
   display: flex;
+  justify-content: space-between;
   padding: 15px;
   gap: 10px;
   width: calc(100% - 20px);
@@ -213,23 +214,30 @@ form {
   color: white;
 }
 
+.taskCntDivider2 {
+  gap:5px;
+  display: flex;
+}
+
 .taskBtns {
-  background-color: var(--color4);
   border: none;
   border-radius: 4px;
   cursor: pointer;
   padding: 3px;
 }
 
-.taskBtns:hover {
-  background-color: white;
-  color: var(black);
-}
-
 #removeBtn {
   background-color: #b07979;
 }
 
+#removeBtn:hover {
+  scale: 0.9;
+}
+
 #modifyBtn {
   background-color: #79B088;
+}
+
+#modifyBtn:hover {
+  scale: 0.9;
 }
