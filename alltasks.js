@@ -73,8 +73,8 @@ export function TaskCreator(task) {
 }
 
 export function removeTask(e) {
-  const parent = e.target.parentElement
-  const taskName = e.target.parentElement.firstChild.textContent;
+  const parent = e.target.parentElement.parentElement
+  const taskName = e.target.parentElement.parentElement.firstChild.textContent;
   for (let i = 0; i < Tasks.length; i++) {
     if (Tasks[i].name == taskName) {
       Tasks.splice(i, 1);
