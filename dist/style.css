@@ -134,7 +134,14 @@ footer {
   color: white;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   visibility: hidden;
-  max-height: 489px;
+}
+
+#miss {
+  font-size: 12px;
+  color: red;
+  padding: 0px;
+  margin: 0px;
+  text-shadow: 0px 0px 3px black;
 }
 
 .overlay {

@@ -18,12 +18,17 @@ export function addTask(name, desc, priority) {
 
 const getTaskFromInput = (event) => {
   event.preventDefault();
-  if (tname.value != "" && tdesc.value != "" && tpty.value != "") {
+  if (tname.value != "" && tdesc.value != "" && tpty.value != "" && ddate.value != "" && tname.value && Tasks.find(task => task.name != tname.value)) {
   const newName = document.getElementById('tname').value
   const newDesc = document.getElementById('tdesc').value
   const newPriority = document.getElementById('tpty').value
   const newDueDate = document.getElementById('ddate').value
   addTask(newName, newDesc, newPriority);
+  } else if (Tasks.find(task => task.name === tname.value)) {
+    const Form = document.querySelector("form")
+    const missMatch = document.querySelector('#miss')
+    missMatch.textContent = "You already have a Task with this name"
+    return
   } else {
     return
   }
