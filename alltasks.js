@@ -79,6 +79,7 @@ export function TaskCreator(task) {
   newPriority.value = ""
   newDueDate.value = ""
 
+  modifyTask.addEventListener('click', openTask)
   closeTask();
 }
 
@@ -94,80 +95,15 @@ export function removeTask(e) {
 
 }
 
-
 export function openTask(e) {
   const taskName = e.target.parentElement.parentElement.firstChild.firstChild.textContent;
     for (let i = 0; i < Tasks.length; i++) {
       if (Tasks[i].name == taskName) {
-        const body = document.querySelector("body")
-
-        const newoverlay = document.createElement("div")
-        newoverlay.classList.add("newoverlay")
-        newoverlay.classList.add("active")
-        body.appendChild(newoverlay)
-
-        const TaskModifyModal = document.createElement("div")
-        TaskModifyModal.classList.add("TaskModifyModal")
-        body.appendChild(TaskModifyModal)
-
-        const newForm = document.createElement("form")
-        TaskModifyModal.appendChild(newForm)
-
-        const newFormTitle = document.createElement("h3")
-        newFormTitle.textContent = "Modify This Task"
-        newForm.appendChild(newFormTitle)
-
-        const nameInput = document.createElement("input")
-        nameInput.setAttribute("type", "text")
-        nameInput.setAttribute("id", "tname")
-        nameInput.setAttribute("name", "tname")
-        nameInput.setAttribute("placeholder", "Name")
-        nameInput.value = Tasks[i].name
-        newForm.appendChild(nameInput)
-
-        const nameInputLabel = document.createElement("label")
-        nameInputLabel.setAttribute("id", "miss")
-        nameInputLabel.setAttribute("for", "tname")
-        newForm.appendChild(nameInputLabel)
-
-        const descriptionTextArea = document.createElement("textarea")
-        descriptionTextArea.setAttribute("id", "tdesc")
-        descriptionTextArea.setAttribute("name", "tdesc")
-        descriptionTextArea.setAttribute("maxlength", "150")
-        descriptionTextArea.setAttribute("placeholder", "Description")
-        descriptionTextArea.value = Tasks[i].description
-        newForm.appendChild(descriptionTextArea)
-
-        const priorityInput = document.createElement("input")
-        priorityInput.setAttribute("type", "text")
-        priorityInput.setAttribute("id", "tpty")
-        priorityInput.setAttribute("name", "tpty")
-        priorityInput.setAttribute("placeholder", "Priority")
-        priorityInput.value = Tasks[i].priority
-        newForm.appendChild(priorityInput)
-
-        const dueDateInputLabel = document.createElement("label")
-        dueDateInputLabel.setAttribute("for", "ddate")
-        dueDateInputLabel.textContent = "Due Date"
-        newForm.appendChild(dueDateInputLabel)
-
-        const dueDateInput = document.createElement("input")
-        dueDateInput.setAttribute("type", "date")
-        dueDateInput.setAttribute("id", "ddate")
-        dueDateInput.setAttribute("name", "ddate")
-        dueDateInput.value = Tasks[i].dueDate
-        newForm.appendChild(dueDateInput)
-        
-        const modifyTaskButton = document.createElement("button")
-        modifyTaskButton.textContent = "MODIFY"
-        modifyTaskButton.setAttribute("id", "addButton")
-        newForm.appendChild(modifyTaskButton)
-
-
-
-        console.log(`${Tasks[i].name} ${Tasks[i].description} ${Tasks[i].priority} ${Tasks[i].dueDate}`);
-        
-        newoverlay.addEventListener('click', closeModifyTaskModal)
+        const modal2 = document.querySelector(".modal2")
+        modal2.classList.add("active")
+        const overlay = document.querySelector('.overlay')
+        overlay.classList.add("active")
+        overlay.addEventListener('click', closeModifyTaskModal)
       }
     }
 
@@ -175,13 +111,12 @@ export function openTask(e) {
 }
 
 export function closeModifyTaskModal() {
-  const newoverlay = document.querySelector('.newoverlay');
-  newoverlay.remove()
+  const overlay = document.querySelector('.overlay')
+  overlay.classList.remove("active")
 
-  const TaskModifyModal = document.querySelector('.TaskModifyModal');
-  TaskModifyModal.remove();
+  const modal2 = document.querySelector(".modal2")
+  modal2.classList.remove("active")
 }
-
 
 export const addButton = document.getElementById("addButton")
 addButton.addEventListener('click', getTaskFromInput)

@@ -120,7 +120,7 @@ footer {
 
 /* CREATION TASK MODAL */
 
-.modal {
+.modal, .modal2 {
   position: fixed;
   z-index: 99;
   top: 50%;
@@ -183,7 +183,7 @@ input:focus {
   outline: 2px solid var(--color2);
 }
 
-#tdesc {
+#tdesc, #tdesc2 {
   height: 100px;
   width: 100%;
   outline: none;
@@ -198,7 +198,11 @@ input:focus {
   outline: 2px solid var(--color2);
 }
 
-#addButton {
+#tdesc2:focus {
+  outline: 2px solid var(--color2);
+}
+
+#addButton, #addButton2 {
   background-color: #79B088;
   width: 50%;
   height: 50px;
