@@ -12,14 +12,19 @@ export class Task {
 };
 
 export function addTask(name, desc, priority, dueDate) {
+
   let task = new Task(name, desc, priority, dueDate);
   Tasks.push(task);
   TaskCreator(task);
 }
 
-const getTaskFromInput = (event) => {
+export const getTaskFromInput = (event) => {
   event.preventDefault();
-  if (tname.value != "" && tdesc.value != "" && tpty.value != "" && ddate.value != "" && tname.value && Tasks.find(task => task.name != tname.value)) {
+  const tname = document.getElementById('tname')
+  const tdesc = document.getElementById('tdesc')
+  const tpty = document.getElementById('tpty')
+  const ddate = document.getElementById('ddate')
+  if (tname.value !== "" && tdesc.value !== "" && tpty.value !== "" && ddate.value !== "" && Tasks.find(task => task.name === tname.value) === undefined) {
   const newName = document.getElementById('tname').value
   const newDesc = document.getElementById('tdesc').value
   const newPriority = document.getElementById('tpty').value
@@ -28,8 +33,6 @@ const getTaskFromInput = (event) => {
   } else if (Tasks.find(task => task.name === tname.value)) {
     const missMatch = document.querySelector('#miss')
     missMatch.textContent = "You already have a Task with this name"
-    return
-  } else {
     return
   }
 }
@@ -85,7 +88,7 @@ export function TaskCreator(task) {
 
 export function removeTask(e) {
   const parent = e.target.parentElement.parentElement
-  const taskName = e.target.parentElement.parentElement.firstChild.textContent;
+  const taskName = e.target.parentElement.parentElement.firstChild.firstChild.textContent;
   for (let i = 0; i < Tasks.length; i++) {
     if (Tasks[i].name == taskName) {
       Tasks.splice(i, 1);
@@ -101,13 +104,36 @@ export function openTask(e) {
       if (Tasks[i].name == taskName) {
         const modal2 = document.querySelector(".modal2")
         modal2.classList.add("active")
+
         const overlay = document.querySelector('.overlay')
         overlay.classList.add("active")
         overlay.addEventListener('click', closeModifyTaskModal)
-      }
+
+        const tname2 = document.querySelector("#tname2")
+        tname2.value = Tasks[i].name
+
+        const tdesc2 = document.querySelector("#tdesc2")
+        tdesc2.value = Tasks[i].description
+
+        const tpty2 = document.querySelector("#tpty2")
+        tpty2.value = Tasks[i].priority
+
+        const ddate2 = document.querySelector("#ddate2")
+        ddate2.value = Tasks[i].dueDate
+
+        const submitChanges = document.querySelector("#addButton2")
+        submitChanges.addEventListener("click", (event) => {
+          event.preventDefault();
+          Tasks[i].name = tname2.value;
+          Tasks[i].description = tdesc2.value;
+          Tasks[i].priority = tpty2.value;
+          Tasks[i].dueDate = ddate2.value;
+          e.target.parentElement.parentElement.firstChild.firstChild.textContent = `${tname2.value}`;
+          e.target.parentElement.parentElement.firstChild.firstChild.nextElementSibling.textContent = `${ddate2.value}`;
+          closeModifyTaskModal();
+        })
     }
-
-
+  }
 }
 
 export function closeModifyTaskModal() {
