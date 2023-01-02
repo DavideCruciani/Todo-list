@@ -12,6 +12,10 @@
   --color5: rgb(83,104,120);
 }
 
+html, body {
+  width: 100%;
+}
+
 header {
   display: flex;
   background-color: var(--color2);
@@ -99,7 +103,8 @@ footer {
 }
 
 #content-holder {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   height: 100%;
   border-radius: 25px;
   background-color: var(--color2);
