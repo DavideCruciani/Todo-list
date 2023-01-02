@@ -20,7 +20,12 @@
       <input type="text" id="tname" name="tname" placeholder="Name">
       <label id="miss" for="tname"></label>
       <textarea id="tdesc" name="tdesc" maxlength="150" placeholder="Description"></textarea>
-      <input type="text" id="tpty" name="tpty" placeholder="Priority">
+      <select id="tpty" name="tpty" placeholder="Priority">
+        <option value="" disabled selected hidden>Priority</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
       <label for="ddate">Due Date</label>
       <input type="date" id="ddate" name="ddate">
       <button id="addButton">CREATE</button>
@@ -32,7 +37,12 @@
       <input type="text" id="tname2" name="tname2" placeholder="Name">
       <label id="miss" for="tname2"></label>
       <textarea id="tdesc2" name="tdesc2" maxlength="150" placeholder="Description"></textarea>
-      <input type="text" id="tpty2" name="tpty2" placeholder="Priority">
+      <select id="tpty2" name="tpty2" placeholder="Priority">
+        <option value="" disabled selected hidden>Priority</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
       <label for="ddate2">Due Date</label>
       <input type="date" id="ddate2" name="ddate2">
       <button id="addButton2">MODIFY</button>

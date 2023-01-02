@@ -4,5 +4,5 @@ import { Tasks, Task, addTask, TaskCreator, openTask, closeModifyTaskModal, getT
 
 navAnimation();
 
-addTask("Compiti Italiano", "Dante pg256", "Alta", "2023-01-31")
-addTask("Compiti Matematica", "Frazioni pg456", "Media", "2023-01-31")
+addTask("Compiti Italiano", "Dante pg256", "High", "2023-01-31")
+addTask("Compiti Matematica", "Frazioni pg456", "Medium", "2023-01-31")

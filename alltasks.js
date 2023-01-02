@@ -38,9 +38,16 @@ export const getTaskFromInput = (event) => {
 }
 
 export function TaskCreator(task) {
-
   const taskCnt = document.createElement('div');
   taskCnt.classList.add("task");
+  taskCnt.setAttribute("id", task.name)
+  if (task.priority == "Low") {
+    taskCnt.classList.add("low")
+  } else if (task.priority == "Medium") {
+    taskCnt.classList.add("medium")
+  } else {
+    taskCnt.classList.add("high")
+  }
   const taskContainer = document.getElementById("content-holder")
   taskContainer.appendChild(taskCnt);
   const taskCntDivider = document.createElement('div')
@@ -99,6 +106,7 @@ export function removeTask(e) {
 }
 
 export function openTask(e) {
+  const parent = e.target.parentElement.parentElement
   const taskName = e.target.parentElement.parentElement.firstChild.firstChild.textContent;
     for (let i = 0; i < Tasks.length; i++) {
       if (Tasks[i].name == taskName) {
@@ -124,14 +132,25 @@ export function openTask(e) {
         const submitChanges = document.querySelector("#addButton2")
         submitChanges.addEventListener("click", (event) => {
           event.preventDefault();
+          const parentId = parent.getAttribute("id")
+          if ( parentId == tname2.value) {
+          parent.classList.remove('low', 'medium', 'high');
           Tasks[i].name = tname2.value;
           Tasks[i].description = tdesc2.value;
           Tasks[i].priority = tpty2.value;
           Tasks[i].dueDate = ddate2.value;
+          if (tpty2.value == "Low") {
+            parent.classList.add("low")
+          } else if (tpty2.value == "Medium") {
+            parent.classList.add("medium")
+          } else if (tpty2.value == "High") {
+            parent.classList.add("high")
+          }
           e.target.parentElement.parentElement.firstChild.firstChild.textContent = `${tname2.value}`;
           e.target.parentElement.parentElement.firstChild.firstChild.nextElementSibling.textContent = `${ddate2.value}`;
           closeModifyTaskModal();
-        })
+        }
+      })
     }
   }
 }
