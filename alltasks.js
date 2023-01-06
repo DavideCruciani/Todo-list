@@ -12,7 +12,6 @@ export class Task {
 };
 
 export function addTask(name, desc, priority, dueDate) {
-
   let task = new Task(name, desc, priority, dueDate);
   Tasks.push(task);
   TaskCreator(task);
@@ -40,7 +39,6 @@ export const getTaskFromInput = (event) => {
 export function TaskCreator(task) {
   const taskCnt = document.createElement('div');
   taskCnt.classList.add("task");
-  taskCnt.setAttribute("id", task.name)
   if (task.priority == "Low") {
     taskCnt.classList.add("low")
   } else if (task.priority == "Medium") {
@@ -105,62 +103,63 @@ export function removeTask(e) {
 
 }
 
-export function openTask(e) {
-  const parent = e.target.parentElement.parentElement
-  const taskName = e.target.parentElement.parentElement.firstChild.firstChild.textContent;
-    for (let i = 0; i < Tasks.length; i++) {
-      if (Tasks[i].name == taskName) {
-        const modal2 = document.querySelector(".modal2")
-        modal2.classList.add("active")
+export function openTask(event) {
+  event.preventDefault();
+  const taskName = event.target.parentElement.parentElement.firstChild.firstChild.textContent;
+  const parent = event.target.parentElement.parentElement;
+  const task = Tasks.find(task => task.name === taskName);
 
-        const overlay = document.querySelector('.overlay')
-        overlay.classList.add("active")
-        overlay.addEventListener('click', closeModifyTaskModal)
+  // Add 'active' class to overlay and modal2 elements
+  const overlay = document.querySelector(".overlay")
+  const modal2 = document.querySelector(".modal2")
+  overlay.classList.add("active");
+  modal2.classList.add("active");
 
-        const tname2 = document.querySelector("#tname2")
-        tname2.value = Tasks[i].name
+  // Set input values to the task values
 
-        const tdesc2 = document.querySelector("#tdesc2")
-        tdesc2.value = Tasks[i].description
+  const tname2 = document.getElementById('tname2')
+  const tdesc2 = document.getElementById('tdesc2')
+  const tpty2 = document.getElementById('tpty2')
+  const ddate2 = document.getElementById('ddate2')
+  const verify = task.name;
+  
+  tname2.value = task.name;
+  tdesc2.value = task.description;
+  tpty2.value = task.priority;
+  ddate2.value = task.dueDate;
 
-        const tpty2 = document.querySelector("#tpty2")
-        tpty2.value = Tasks[i].priority
-
-        const ddate2 = document.querySelector("#ddate2")
-        ddate2.value = Tasks[i].dueDate
-
-        const submitChanges = document.querySelector("#addButton2")
-        submitChanges.addEventListener("click", (event) => {
-          event.preventDefault();
-          const parentId = parent.getAttribute("id")
-          if ( parentId == tname2.value) {
-          parent.classList.remove('low', 'medium', 'high');
-          Tasks[i].name = tname2.value;
-          Tasks[i].description = tdesc2.value;
-          Tasks[i].priority = tpty2.value;
-          Tasks[i].dueDate = ddate2.value;
-          if (tpty2.value == "Low") {
-            parent.classList.add("low")
-          } else if (tpty2.value == "Medium") {
-            parent.classList.add("medium")
-          } else if (tpty2.value == "High") {
-            parent.classList.add("high")
-          }
-          e.target.parentElement.parentElement.firstChild.firstChild.textContent = `${tname2.value}`;
-          e.target.parentElement.parentElement.firstChild.firstChild.nextElementSibling.textContent = `${ddate2.value}`;
-          closeModifyTaskModal();
-        }
-      })
-    }
-  }
+  const addButton2 = document.querySelector("#addButton2")
+  addButton2.addEventListener("click", removeOldTask(parent, verify))
+  addButton2.addEventListener("click", modifyTaskFromInput)
 }
 
-export function closeModifyTaskModal() {
-  const overlay = document.querySelector('.overlay')
-  overlay.classList.remove("active")
+export function removeOldTask(parent, verify) {
+  for (let i = 0; i < Tasks.length; i++) {
+    if (Tasks[i].name == verify) {
+      Tasks.splice(i, 1);
+    }
+  }
+  parent.remove();
+}
 
-  const modal2 = document.querySelector(".modal2")
-  modal2.classList.remove("active")
+export const modifyTaskFromInput = (event) => {
+  event.preventDefault();
+  const tname2 = document.getElementById('tname2')
+  const tdesc2 = document.getElementById('tdesc2')
+  const tpty2 = document.getElementById('tpty2')
+  const ddate2 = document.getElementById('ddate2')
+  if (tname2.value !== "" && tdesc2.value !== "" && tpty2.value !== "" && ddate2.value !== "" && Tasks.find(task => task.name === tname.value) === undefined) {
+  const newName = document.getElementById('tname2').value
+  const newDesc = document.getElementById('tdesc2').value
+  const newPriority = document.getElementById('tpty2').value
+  const newDueDate = document.getElementById('ddate2').value
+  addTask(newName, newDesc, newPriority, newDueDate);
+  closeTask()
+  } else if (Tasks.find(task => task.name === tname.value)) {
+    const missMatch = document.querySelector('#miss')
+    missMatch.textContent = "You already have a Task with this name"
+    return
+  }
 }
 
 export const addButton = document.getElementById("addButton")

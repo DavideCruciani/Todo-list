@@ -20,6 +20,8 @@ function closeTask() {
   overlay.classList.remove("active")
   const modal = document.querySelector('.modal')
   modal.classList.remove("active")
+  const modal2 = document.querySelector('.modal2')
+  modal2.classList.remove("active")
   const missMatch = document.querySelector('#miss')
   missMatch.textContent = ""
   const newName = document.getElementById('tname')

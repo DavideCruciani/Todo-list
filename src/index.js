@@ -1,6 +1,6 @@
 import { navAnimation, navToggle } from '../nav'
 import { createTaskBtn, createTaskModal, closeTask } from '../newtask'
-import { Tasks, Task, addTask, TaskCreator, openTask, closeModifyTaskModal, getTaskFromInput } from '../alltasks';
+import { Tasks, Task, addTask, TaskCreator, openTask, getTaskFromInput, modifyTaskFromInput, removeOldTask } from '../alltasks';
 
 navAnimation();
 
