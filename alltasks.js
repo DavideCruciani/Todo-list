@@ -110,9 +110,9 @@ export function openTask(event) {
   const task = Tasks.find(task => task.name === taskName);
 
   // Add 'active' class to overlay and modal2 elements
-  const overlay = document.querySelector(".overlay")
+  const overlay2 = document.querySelector(".overlay2")
   const modal2 = document.querySelector(".modal2")
-  overlay.classList.add("active");
+  overlay2.classList.add("active");
   modal2.classList.add("active");
 
   // Set input values to the task values
@@ -154,7 +154,10 @@ export const modifyTaskFromInput = (event) => {
   const newPriority = document.getElementById('tpty2').value
   const newDueDate = document.getElementById('ddate2').value
   addTask(newName, newDesc, newPriority, newDueDate);
-  closeTask()
+  const overlay2 = document.querySelector(".overlay2")
+  const modal2 = document.querySelector(".modal2")
+  overlay2.classList.remove("active");
+  modal2.classList.remove("active");
   } else if (Tasks.find(task => task.name === tname.value)) {
     const missMatch = document.querySelector('#miss')
     missMatch.textContent = "You already have a Task with this name"
