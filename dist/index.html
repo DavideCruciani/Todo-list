@@ -35,7 +35,7 @@
     <form>
       <h3>Modify This Task</h3>
       <input type="text" id="tname2" name="tname2" placeholder="Name">
-      <label id="miss" for="tname2"></label>
+      <label id="miss2" for="tname2"></label>
       <textarea id="tdesc2" name="tdesc2" maxlength="150" placeholder="Description"></textarea>
       <select id="tpty2" name="tpty2" placeholder="Priority">
         <option value="" disabled selected hidden>Priority</option>
@@ -48,8 +48,23 @@
       <button id="addButton2">MODIFY</button>
     </form>
   </div>
+  <div class="modal3">
+    <div id="infoCnt">
+      <h3 id="info-title">Task Info</h3>
+      <label class="dataLabel" for="tname3">Name</label>
+      <div class="infos" id="tname3" name="tname3"></div>
+      <label class="dataLabel" for="tdesc3">Description</label>
+      <div class="infos" id="tdesc3"></div>
+      <label class="dataLabel" for="tpty3">Priority</label>
+      <div class="infos" id="tpty3"></div>
+      <label class="dataLabel" for="ddate3">DueDate</label>
+      <div class="infos" id="ddate3"></div>
+      <button id="addButton3">CLOSE</button>
+    </div>
+  </div>
   <div class="overlay"></div>
   <div class="overlay2"></div>
+  <div class="overlay3"></div>
   <header>
     <button id="button">
       <span class="material-symbols-outlined" id="menu">

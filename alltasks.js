@@ -63,6 +63,13 @@ export function TaskCreator(task) {
   const taskCntDivider2 = document.createElement('div')
   taskCnt.appendChild(taskCntDivider2);
   taskCntDivider2.classList.add("taskCntDivider2")
+  const info = document.createElement('button');
+  taskCntDivider2.appendChild(info);
+  info.innerText = "Info";
+  info.classList.add("taskBtns")
+  info.setAttribute("id", "infoBtn")
+  info.addEventListener("click", infoModal)
+
   const remove = document.createElement('button');
   taskCntDivider2.appendChild(remove);
   remove.innerText = "Remove";
@@ -89,6 +96,39 @@ export function TaskCreator(task) {
 
   modifyTask.addEventListener('click', openTask)
   closeTask();
+}
+
+export function infoModal(event) {
+  const taskName = event.target.parentElement.parentElement.firstChild.firstChild.textContent;
+  const task = Tasks.find(task => task.name === taskName);
+  // Add 'active' class to overlay and modal2 elements
+  const overlay3 = document.querySelector(".overlay3")
+  const modal3 = document.querySelector(".modal3")
+  overlay3.classList.add("active");
+  modal3.classList.add("active");
+
+  // Set input values to the task values
+
+  const tname3 = document.getElementById('tname3')
+  const tdesc3 = document.getElementById('tdesc3')
+  const tpty3 = document.getElementById('tpty3')
+  const ddate3 = document.getElementById('ddate3')
+
+  tname3.textContent = task.name;
+  tdesc3.textContent = task.description;
+  tpty3.textContent = task.priority;
+  ddate3.textContent = task.dueDate;
+
+  const addButton3 = document.querySelector("#addButton3")
+  addButton3.addEventListener("click", closeInfoModal)
+
+}
+
+export function closeInfoModal() {
+  const overlay3 = document.querySelector('.overlay3')
+  overlay3.classList.remove("active")
+  const modal3 = document.querySelector('.modal3')
+  modal3.classList.remove("active")
 }
 
 export function removeTask(e) {
@@ -148,7 +188,7 @@ export const modifyTaskFromInput = (event) => {
   const tdesc2 = document.getElementById('tdesc2')
   const tpty2 = document.getElementById('tpty2')
   const ddate2 = document.getElementById('ddate2')
-  if (tname2.value !== "" && tdesc2.value !== "" && tpty2.value !== "" && ddate2.value !== "" && Tasks.find(task => task.name === tname.value) === undefined) {
+  if (tname2.value !== "" && tdesc2.value !== "" && tpty2.value !== "" && ddate2.value !== "" && Tasks.find(task => task.name === tname2.value) === undefined) {
   const newName = document.getElementById('tname2').value
   const newDesc = document.getElementById('tdesc2').value
   const newPriority = document.getElementById('tpty2').value
@@ -158,9 +198,9 @@ export const modifyTaskFromInput = (event) => {
   const modal2 = document.querySelector(".modal2")
   overlay2.classList.remove("active");
   modal2.classList.remove("active");
-  } else if (Tasks.find(task => task.name === tname.value)) {
-    const missMatch = document.querySelector('#miss')
-    missMatch.textContent = "You already have a Task with this name"
+  } else if (Tasks.find(task => task.name === tname2.value)) {
+    const missMatch2 = document.querySelector('#miss2')
+    missMatch2.textContent = "You already have a Task with this name"
     return
   }
 }
