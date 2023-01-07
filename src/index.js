@@ -3,10 +3,10 @@ import { createTaskBtn, createTaskModal, closeTask } from '../newtask'
 import { Tasks, Task, addTask, TaskCreator, openTask, getTaskFromInput, modifyTaskFromInput, removeOldTask } from '../alltasks';
 
 function defaultTasks() {
-  if (sessionStorage.getItem('pageLoaded') === null) {
+  if (localStorage.getItem('pageLoaded') === null) {
     addTask("Compiti Italiano", "Dante pg256", "High", "2023-01-31")
     addTask("Compiti Matematica", "Frazioni pg456", "Medium", "2023-01-31")
-    sessionStorage.setItem('pageLoaded', true);
+    localStorage.setItem('pageLoaded', true);
   }
 }
 
