@@ -14,7 +14,8 @@ export class Task {
 export function addTask(name, desc, priority, dueDate) {
   let task = new Task(name, desc, priority, dueDate);
   Tasks.push(task);
-  TaskCreator(task);
+  localStorage.setItem('tasks', JSON.stringify(Tasks));
+  TaskCreator(task)
 }
 
 export const getTaskFromInput = (event) => {
@@ -139,6 +140,7 @@ export function removeTask(e) {
       Tasks.splice(i, 1);
     }
   }
+  localStorage.setItem('tasks', JSON.stringify(Tasks));
   parent.remove();
 
 }
@@ -179,6 +181,7 @@ export function removeOldTask(parent, verify) {
       Tasks.splice(i, 1);
     }
   }
+  localStorage.setItem('tasks', JSON.stringify(Tasks));
   parent.remove();
 }
 
@@ -207,5 +210,3 @@ export const modifyTaskFromInput = (event) => {
 
 export const addButton = document.getElementById("addButton")
 addButton.addEventListener('click', getTaskFromInput)
-
-
