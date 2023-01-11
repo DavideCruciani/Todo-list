@@ -1,6 +1,6 @@
 import { navAnimation, navToggle } from '../nav'
 import { createTaskBtn, createTaskModal, closeTask } from '../newtask'
-import { Tasks, Task, addTask, TaskCreator, openTask, getTaskFromInput, modifyTaskFromInput, removeOldTask, showAllTasks } from '../alltasks';
+import { Tasks, Task, addTask, TaskCreator, openTask, getTaskFromInput, modifyTaskFromInput, removeOldTask, showAllTasks, tickTask } from '../alltasks';
 import { showTodayTasks } from '../todaytasks';
 import { showWeekTasks } from '../weeklytasks';
 

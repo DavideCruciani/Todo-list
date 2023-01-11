@@ -64,6 +64,17 @@ export function TaskCreator(task) {
   const taskCntDivider2 = document.createElement('div')
   taskCnt.appendChild(taskCntDivider2);
   taskCntDivider2.classList.add("taskCntDivider2")
+
+  const tick = document.createElement('button');
+  taskCntDivider2.appendChild(tick);
+  tick.classList.add("tickButton")
+  tick.addEventListener("click", tickTask)
+  if (task.tick == "check") {
+    tick.classList.add("activeTickButton")
+    parag.classList.add("line-through")
+    tick.innerText = "✔"
+  }
+
   const info = document.createElement('button');
   taskCntDivider2.appendChild(info);
   info.innerText = "Info";
@@ -97,6 +108,26 @@ export function TaskCreator(task) {
 
   modifyTask.addEventListener('click', openTask)
   closeTask();
+}
+
+export function tickTask(event) {
+  const parag = event.target.parentElement.parentElement.firstChild.firstChild;
+  const taskName = event.target.parentElement.parentElement.firstChild.firstChild.textContent;
+  const task = Tasks.find(task => task.name === taskName);
+  const circleButton = event.target
+  if (circleButton.classList.contains("activeTickButton")) {
+    circleButton.classList.remove("activeTickButton")
+    circleButton.innerText = "";
+    parag.classList.remove("line-through")
+    task.tick = "";
+    localStorage.setItem('tasks', JSON.stringify(Tasks));
+  } else {
+    circleButton.classList.add("activeTickButton")
+    circleButton.innerText = "✔";
+    parag.classList.add("line-through")
+    task.tick = "check";
+    localStorage.setItem('tasks', JSON.stringify(Tasks));
+  }
 }
 
 export function infoModal(event) {
