@@ -1,6 +1,8 @@
 import { navAnimation, navToggle } from '../nav'
 import { createTaskBtn, createTaskModal, closeTask } from '../newtask'
-import { Tasks, Task, addTask, TaskCreator, openTask, getTaskFromInput, modifyTaskFromInput, removeOldTask } from '../alltasks';
+import { Tasks, Task, addTask, TaskCreator, openTask, getTaskFromInput, modifyTaskFromInput, removeOldTask, showAllTasks } from '../alltasks';
+import { showTodayTasks } from '../todaytasks';
+import { showWeekTasks } from '../weeklytasks';
 
 function defaultTasks() {
   if (localStorage.getItem('pageLoaded') === null) {
@@ -18,6 +20,17 @@ if (savedTasks) {
   Tasks.forEach(task => TaskCreator(task));
 }
 
+showAllTasks();
+
 navAnimation();
+
+const ShowAllTasksButton = document.getElementById("all-tasks-button")
+ShowAllTasksButton.addEventListener("click", showAllTasks)
+
+const ShowTodayTasksButton = document.getElementById("today-tasks-button")
+ShowTodayTasksButton.addEventListener("click", showTodayTasks)
+
+const ShowWeeklyTasksButton = document.getElementById("week-tasks-button")
+ShowWeeklyTasksButton.addEventListener("click", showWeekTasks)
 
 

@@ -210,3 +210,32 @@ export const modifyTaskFromInput = (event) => {
 
 export const addButton = document.getElementById("addButton")
 addButton.addEventListener('click', getTaskFromInput)
+
+export function showAllTasks() {
+  const ShowAllTaskButton = document.getElementById("all-tasks-button")
+  ShowAllTaskButton.classList.add("active-nav-button")
+  const ShowWeeklyTaskButton = document.getElementById("week-tasks-button")
+  ShowWeeklyTaskButton.classList.remove("active-nav-button")
+  const ShowTodayTaskButton = document.getElementById("today-tasks-button")
+  ShowTodayTaskButton.classList.remove("active-nav-button")
+  const savedTasks = localStorage.getItem('tasks');
+  Tasks = JSON.parse(savedTasks);
+  Tasks.forEach(task => allTasks(task));
+}
+
+function allTasks(task) {
+  let taskDivs = document.getElementsByClassName('task');
+  for (let taskDiv of taskDivs) {
+    let firstTaskDivs = taskDiv.getElementsByClassName('taskCntDivider');
+    for (let firstTaskDiv of firstTaskDivs) {
+        let ps = firstTaskDiv.getElementsByTagName('p');
+        for (let p of ps) {
+            if (p.textContent === task.name) {
+                taskDiv.classList.remove("hiddenTask")
+                taskDiv.classList.add("shownTask")
+                break;
+            }
+        }
+    }
+}
+}
